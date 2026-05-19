@@ -42,6 +42,14 @@ spring:
           - name: CircuitBreaker
             args:
               name: transactionCB
+
+         - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**, /oauth/**
+          filters:  
+          - StripPrefix=1
+        
 eureka:
   client:
     service-url:
